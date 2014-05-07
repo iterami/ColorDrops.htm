@@ -25,31 +25,32 @@ function draw(){
     }
 
     if(ripples.length > 0){
-        i = ripples.length - 1;
+        var loop_counter = ripples.length - 1;
         do{
-            if(ripples[i][2] > x){
+            if(ripples[loop_counter][2] > x){
                 ripples.splice(
-                  i,
+                  loop_counter,
                   1
                 );
             }
-        }while(i--);
+        }while(loop_counter--);
 
-        i = 0;
-        while(i < ripples.length - 1){
+        loop_counter = 0;
+        while(loop_counter < ripples.length - 1){
             // increase size of ripple
-            ripples[i][2] += 1;
+            ripples[loop_counter][2] += 1;
 
             // draw ripple
-            buffer.fillStyle = ripples[i][3];
+            buffer.fillStyle = ripples[loop_counter][3];
             buffer.fillRect(
-              ripples[i][0] - ripples[i][2],
-              ripples[i][1] - ripples[i][2],
-              ripples[i][2] * 2,
-              ripples[i][2] * 2
+              ripples[loop_counter][0] - ripples[loop_counter][2],
+              ripples[loop_counter][1] - ripples[loop_counter][2],
+              ripples[loop_counter][2] * 2,
+              ripples[loop_counter][2] * 2
             );
 
-            i += 1;
+            // move on to next ripple
+            loop_counter += 1;
         }
     }
 
@@ -85,7 +86,6 @@ function resize(){
 var buffer = document.getElementById('buffer').getContext('2d');
 var canvas = document.getElementById('canvas').getContext('2d');
 var height = 0;
-var i = 0;
 var ripples = [];
 var ripple_timer = 99;
 var ripple_type = 1;
