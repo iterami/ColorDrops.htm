@@ -10,17 +10,17 @@ function draw(){
     if(ripple_timer > 23){
         ripple_timer = 0;
 
-        // create new ripple
+        // Create new ripple.
         ripples.push([
           drop_x,
           drop_y,
           0,
           ripple_type
             ? '#' + random_hex() + random_hex() + random_hex()
-            : '#000'
+            : '#000',
         ]);
 
-        // alternate between color ripple and #000 ripple
+        // Alternate between color ripple and #000 ripple.
         ripple_type = !ripple_type;
     }
 
@@ -37,10 +37,10 @@ function draw(){
 
         loop_counter = 0;
         while(loop_counter < ripples.length - 1){
-            // increase size of ripple
+            // Increase size of ripple.
             ripples[loop_counter][2] += 1;
 
-            // draw ripple
+            // Draw ripple.
             buffer.fillStyle = ripples[loop_counter][3];
             buffer.fillRect(
               ripples[loop_counter][0] - ripples[loop_counter][2],
@@ -49,7 +49,7 @@ function draw(){
               ripples[loop_counter][2] * 2
             );
 
-            // move on to next ripple
+            // Move on to next ripple.
             loop_counter += 1;
         }
     }
@@ -105,14 +105,14 @@ setInterval(
 );
 
 window.onkeydown = function(e){
-    // clear and reset
+    // Clear and reset.
     ripples.length = 0;
     drop_x = x;
     drop_y = y;
 };
 
 window.onmousedown = function(e){
-    // change ripple origin
+    // Change ripple origin.
     ripple_type = 1;
     drop_x = e.pageX;
     drop_y = e.pageY;
