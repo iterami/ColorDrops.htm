@@ -16,7 +16,7 @@ function draw(){
           drop_y,
           0,
           ripple_type
-            ? '#' + random_hex() + random_hex() + random_hex()
+            ? random_hex()
             : '#000',
         ]);
 
@@ -68,7 +68,11 @@ function draw(){
 }
 
 function random_hex(){
-    return '0123456789abcdef'.charAt(Math.floor(Math.random() * 16));
+    var choices = '0123456789abcdef';
+    return '#'
+      + choices.charAt(Math.floor(Math.random() * 16))
+      + choices.charAt(Math.floor(Math.random() * 16))
+      + choices.charAt(Math.floor(Math.random() * 16));
 }
 
 function resize(){
