@@ -15,17 +15,17 @@ function draw(){
           drop_x,
           drop_y,
           0,
-          ripple_type
+          ripple_color
             ? random_hex()
             : '#000',
         ]);
 
         // Alternate between color ripple and #000 ripple.
-        ripple_type = !ripple_type;
+        ripple_color = !ripple_color;
     }
 
-    if(ripples.length > 0){
-        var loop_counter = ripples.length - 1;
+    var loop_counter = ripples.length - 1;
+    if(loop_counter >= 0){
         do{
             if(ripples[loop_counter][2] > x){
                 ripples.splice(
@@ -35,8 +35,7 @@ function draw(){
             }
         }while(loop_counter--);
 
-        loop_counter = 0;
-        while(loop_counter < ripples.length - 1){
+        for(loop_counter = 0; loop_counter < ripples.length - 1; loop_counter++){
             // Increase size of ripple.
             ripples[loop_counter][2] += 1;
 
@@ -48,9 +47,6 @@ function draw(){
               ripples[loop_counter][2] * 2,
               ripples[loop_counter][2] * 2
             );
-
-            // Move on to next ripple.
-            loop_counter += 1;
         }
     }
 
@@ -90,9 +86,9 @@ function resize(){
 var buffer = document.getElementById('buffer').getContext('2d');
 var canvas = document.getElementById('canvas').getContext('2d');
 var height = 0;
+var ripple_color = false;
 var ripples = [];
 var ripple_timer = 99;
-var ripple_type = 1;
 var width = 0;
 var x = 0;
 var y = 0;
@@ -116,8 +112,9 @@ window.onkeydown = function(e){
 };
 
 window.onmousedown = function(e){
+    ripple_color = false;
+
     // Change ripple origin.
-    ripple_type = 1;
     drop_x = e.pageX;
     drop_y = e.pageY;
 };
