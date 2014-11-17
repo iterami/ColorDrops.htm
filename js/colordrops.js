@@ -111,7 +111,8 @@ window.onkeydown = function(e){
     drop_y = y;
 };
 
-window.onmousedown = function(e){
+window.onmousedown = 
+  window.ontouchstart = function(e){
     ripple_color = false;
 
     // Change ripple origin.
