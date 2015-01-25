@@ -35,20 +35,6 @@ function draw(){
     window.requestAnimationFrame(draw);
 }
 
-function init(){
-    window.onresize = resize;
-    resize();
-
-    drop_x = x;
-    drop_y = y;
-
-    window.requestAnimationFrame(draw);
-    setInterval(
-      'logic()',
-      30
-    );
-}
-
 function logic(){
     ripple_timer += 1;
     if(ripple_timer > 23){
@@ -59,13 +45,8 @@ function logic(){
           drop_x,
           drop_y,
           0,
-          ripple_color
-            ? random_hex()
-            : '#000',
+          random_hex(),
         ]);
-
-        // Alternate between color ripple and #000 ripple.
-        ripple_color = !ripple_color;
     }
 
     var loop_counter = ripples.length - 1;
@@ -111,7 +92,6 @@ var canvas = document.getElementById('canvas').getContext('2d');
 var drop_x = 0;
 var drop_y = 0;
 var height = 0;
-var ripple_color = false;
 var ripples = [];
 var ripple_timer = 99;
 var width = 0;
@@ -121,17 +101,30 @@ var y = 0;
 window.onkeydown = function(e){
     // Clear and reset.
     ripples.length = 0;
+
     drop_x = x;
     drop_y = y;
+    ripple_timer = 99;
 };
 
-window.onload = init;
+window.onload = function(){
+    window.onresize = resize;
+    resize();
+
+    drop_x = x;
+    drop_y = y;
+
+    window.requestAnimationFrame(draw);
+    setInterval(
+      'logic()',
+      30
+    );
+};
 
 window.onmousedown = 
   window.ontouchstart = function(e){
-    ripple_color = false;
-
     // Change ripple origin.
     drop_x = e.pageX;
     drop_y = e.pageY;
+    ripple_timer = 99;
 };
