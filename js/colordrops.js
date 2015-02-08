@@ -115,7 +115,7 @@ window.onload = function(){
     drop_y = y;
 
     window.requestAnimationFrame(draw);
-    setInterval(
+    window.setInterval(
       'logic()',
       30
     );
