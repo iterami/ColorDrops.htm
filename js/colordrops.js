@@ -20,6 +20,17 @@ function draw(){
         }
     }
 
+    // Setup text display.
+    buffer.fillStyle = '#fff';
+    buffer.font = '23pt sans-serif';
+
+    // Draw ripple_interval.
+    buffer.fillText(
+      ripple_interval,
+      5,
+      25
+    );
+
     canvas.clearRect(
       0,
       0,
@@ -37,7 +48,7 @@ function draw(){
 
 function logic(){
     ripple_timer += 1;
-    if(ripple_timer > 23){
+    if(ripple_timer >= ripple_interval){
         ripple_timer = 0;
 
         // Create new ripple.
@@ -93,18 +104,34 @@ var drop_x = 0;
 var drop_y = 0;
 var height = 0;
 var ripples = [];
+var ripple_interval = 23;
 var ripple_timer = 99;
 var width = 0;
 var x = 0;
 var y = 0;
 
 window.onkeydown = function(e){
-    // Clear and reset.
-    ripples.length = 0;
+    var key = e.keyCode || e.which;
 
-    drop_x = x;
-    drop_y = y;
-    ripple_timer = 99;
+    // +: drop_counter++;
+    if(key == 187){
+        ripple_interval++;
+
+    // -: drop_counter--;
+    }else if(key == 189){
+        ripple_interval = ripple_interval > 0
+          ? ripple_interval - 1
+          : 0;
+
+    // ESC: clear and reset.
+    }else if(key == 27){
+        ripples.length = 0;
+
+        drop_x = x;
+        drop_y = y;
+        ripple_interval = 23;
+        ripple_timer = 99;
+    }
 };
 
 window.onload = function(){
