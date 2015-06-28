@@ -10,12 +10,12 @@ function draw(){
     if(loop_counter >= 0){
         for(loop_counter = 0; loop_counter < ripples.length - 1; loop_counter++){
             // Draw ripple.
-            buffer.fillStyle = ripples[loop_counter][3];
+            buffer.fillStyle = ripples[loop_counter]['color'];
             buffer.fillRect(
-              ripples[loop_counter][0] - ripples[loop_counter][2],
-              ripples[loop_counter][1] - ripples[loop_counter][2],
-              ripples[loop_counter][2] * 2,
-              ripples[loop_counter][2] * 2
+              ripples[loop_counter]['x'] - ripples[loop_counter]['width'],
+              ripples[loop_counter]['y'] - ripples[loop_counter]['width'],
+              ripples[loop_counter]['width'] * 2,
+              ripples[loop_counter]['width'] * 2
             );
         }
     }
@@ -52,18 +52,18 @@ function logic(){
         ripple_timer = 0;
 
         // Create new ripple.
-        ripples.push([
-          drop_x,
-          drop_y,
-          0,
-          random_hex(),
-        ]);
+        ripples.push({
+          'color': random_hex(),
+          'width': 0,
+          'x': drop_x,
+          'y': drop_y,
+        });
     }
 
     var loop_counter = ripples.length - 1;
     if(loop_counter >= 0){
         do{
-            if(ripples[loop_counter][2] > x){
+            if(ripples[loop_counter]['width'] > x){
                 ripples.splice(
                   loop_counter,
                   1
@@ -73,7 +73,7 @@ function logic(){
 
         for(loop_counter = 0; loop_counter < ripples.length - 1; loop_counter++){
             // Increase size of ripple.
-            ripples[loop_counter][2] += 1;
+            ripples[loop_counter]['width'] += 1;
         }
     }
 }
