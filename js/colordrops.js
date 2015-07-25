@@ -116,17 +116,17 @@ window.onkeydown = function(e){
     var key = e.keyCode || e.which;
 
     // +: drop_counter++;
-    if(key == 187){
+    if(key === 187){
         ripple_interval++;
 
     // -: drop_counter--;
-    }else if(key == 189){
+    }else if(key === 189){
         ripple_interval = ripple_interval > 0
           ? ripple_interval - 1
           : 0;
 
     // ESC: clear and reset.
-    }else if(key == 27){
+    }else if(key === 27){
         ripples.length = 0;
 
         drop_x = x;
