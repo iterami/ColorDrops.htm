@@ -100,8 +100,12 @@ function resize(){
     x = width / 2;
 }
 
-var buffer = document.getElementById('buffer').getContext('2d');
-var canvas = document.getElementById('canvas').getContext('2d');
+var buffer = document.getElementById('buffer').getContext('2d', {
+  'alpha': false,
+});
+var canvas = document.getElementById('canvas').getContext('2d', {
+  'alpha': false,
+});
 var drop_x = 0;
 var drop_y = 0;
 var height = 0;
