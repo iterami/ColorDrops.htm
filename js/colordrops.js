@@ -22,11 +22,8 @@ function draw(){
         }
     }
 
-    // Setup text display.
-    buffer.fillStyle = '#fff';
-    buffer.font = '23pt sans-serif';
-
     // Draw ripple_interval.
+    buffer.fillStyle = '#fff';
     buffer.fillText(
       ripple_interval,
       5,
@@ -98,6 +95,8 @@ function resize(){
     document.getElementById('buffer').width = width;
     document.getElementById('canvas').width = width;
     x = width / 2;
+
+    buffer.font = '23pt sans-serif';
 }
 
 var buffer = document.getElementById('buffer').getContext('2d', {
