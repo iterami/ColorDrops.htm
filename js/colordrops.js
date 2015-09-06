@@ -22,12 +22,17 @@ function draw(){
         }
     }
 
-    // Draw ripple_interval.
+    // Draw ripples and ripple_interval.
     buffer.fillStyle = '#fff';
     buffer.fillText(
-      ripple_interval,
-      5,
+      ripples.length,
+      0,
       25
+    );
+    buffer.fillText(
+      ripple_interval,
+      0,
+      50
     );
 
     canvas.clearRect(
