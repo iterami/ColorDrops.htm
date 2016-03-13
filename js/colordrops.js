@@ -158,7 +158,7 @@ window.onload = function(){
     );
 };
 
-window.onmousedown = 
+window.onmousedown =
   window.ontouchstart = function(e){
     // Change ripple origin.
     drop_x = e.pageX;
