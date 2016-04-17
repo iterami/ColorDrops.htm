@@ -1,13 +1,6 @@
 'use strict';
 
-function draw(){
-    buffer.clearRect(
-      0,
-      0,
-      width,
-      height
-    );
-
+function draw_logic(){
     var loop_counter = ripples.length - 1;
     if(loop_counter >= 0){
         for(loop_counter = 0; loop_counter < ripples.length - 1; loop_counter++){
@@ -34,20 +27,6 @@ function draw(){
       0,
       50
     );
-
-    canvas.clearRect(
-      0,
-      0,
-      width,
-      height
-    );
-    canvas.drawImage(
-      document.getElementById('buffer'),
-      0,
-      0
-    );
-
-    window.requestAnimationFrame(draw);
 }
 
 function logic(){
@@ -90,35 +69,15 @@ function random_hex(){
       + choices.charAt(Math.floor(Math.random() * 16));
 }
 
-function resize(){
-    height = window.innerHeight;
-    document.getElementById('buffer').height = height;
-    document.getElementById('canvas').height = height;
-    y = height / 2;
-
-    width = window.innerWidth;
-    document.getElementById('buffer').width = width;
-    document.getElementById('canvas').width = width;
-    x = width / 2;
-
+function resize_logic(){
     buffer.font = '23pt sans-serif';
 }
 
-var buffer = document.getElementById('buffer').getContext('2d', {
-  'alpha': false,
-});
-var canvas = document.getElementById('canvas').getContext('2d', {
-  'alpha': false,
-});
 var drop_x = 0;
 var drop_y = 0;
-var height = 0;
 var ripples = [];
 var ripple_interval = 23;
 var ripple_timer = 99;
-var width = 0;
-var x = 0;
-var y = 0;
 
 window.onkeydown = function(e){
     var key = e.keyCode || e.which;
@@ -146,16 +105,10 @@ window.onkeydown = function(e){
 
 window.onload = function(){
     window.onresize = resize;
-    resize();
+    init_canvas();
 
     drop_x = x;
     drop_y = y;
-
-    window.requestAnimationFrame(draw);
-    window.setInterval(
-      logic,
-      30
-    );
 };
 
 window.onmousedown =
