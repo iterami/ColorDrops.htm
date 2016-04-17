@@ -104,7 +104,6 @@ window.onkeydown = function(e){
 };
 
 window.onload = function(){
-    window.onresize = resize;
     init_canvas();
 
     drop_x = x;
