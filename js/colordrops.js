@@ -38,8 +38,8 @@ function logic(){
         ripples.push({
           'color': random_hex(),
           'width': 0,
-          'x': drop_x,
-          'y': drop_y,
+          'x': mouse['down-x'],
+          'y': mouse['down-y'],
         });
     }
 
@@ -73,47 +73,46 @@ function resize_logic(){
     buffer.font = '23pt sans-serif';
 }
 
-var drop_x = 0;
-var drop_y = 0;
 var ripples = [];
 var ripple_interval = 23;
 var ripple_timer = 99;
 
-window.onkeydown = function(e){
-    var key = e.keyCode || e.which;
-
-    // +: drop_counter++;
-    if(key === 187){
-        ripple_interval++;
-
-    // -: drop_counter--;
-    }else if(key === 189){
-        ripple_interval = ripple_interval > 0
-          ? ripple_interval - 1
-          : 0;
-
-    // ESC: clear and reset.
-    }else if(key === 27){
-        ripples.length = 0;
-
-        drop_x = x;
-        drop_y = y;
-        ripple_interval = 23;
-        ripple_timer = 99;
-    }
-};
-
 window.onload = function(){
     init_canvas();
+    init_input(
+      {
+        27: {
+          'todo': function(){
+              ripples.length = 0;
 
-    drop_x = x;
-    drop_y = y;
-};
+              mouse['down-x'] = x;
+              mouse['down-y'] = y;
+              ripple_interval = 23;
+              ripple_timer = 99;
+          },
+        },
+        187: {
+          'todo': function(){
+              ripple_interval++;
+          },
+        },
+        189: {
+          'todo': function(){
+              ripple_interval = ripple_interval > 0
+                ? ripple_interval - 1
+                : 0;
+          },
+        },
+      },
+      {
+        'mousedown': {
+          'todo': function(){
+              ripple_timer = 99;
+          },
+        },
+      }
+    );
 
-window.onmousedown =
-  window.ontouchstart = function(e){
-    // Change ripple origin.
-    drop_x = e.pageX;
-    drop_y = e.pageY;
-    ripple_timer = 99;
+    mouse['down-x'] = x;
+    mouse['down-y'] = y;
 };
