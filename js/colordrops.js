@@ -70,7 +70,7 @@ function random_hex(){
 }
 
 function resize_logic(){
-    buffer.font = '23pt sans-serif';
+    buffer.font = font;
 }
 
 var ripples = [];
