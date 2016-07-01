@@ -69,10 +69,6 @@ function random_hex(){
       + choices.charAt(Math.floor(Math.random() * 16));
 }
 
-function resize_logic(){
-    buffer.font = font;
-}
-
 var ripples = [];
 var ripple_interval = 23;
 var ripple_timer = 99;
