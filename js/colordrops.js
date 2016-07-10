@@ -38,8 +38,8 @@ function logic(){
         ripples.push({
           'color': random_hex(),
           'width': 0,
-          'x': mouse['down-x'],
-          'y': mouse['down-y'],
+          'x': input_mouse['down-x'],
+          'y': input_mouse['down-y'],
         });
     }
 
@@ -75,14 +75,14 @@ var ripple_timer = 99;
 
 window.onload = function(){
     init_canvas();
-    init_input(
+    input_init(
       {
         27: {
           'todo': function(){
               ripples.length = 0;
 
-              mouse['down-x'] = x;
-              mouse['down-y'] = y;
+              input_mouse['down-x'] = x;
+              input_mouse['down-y'] = y;
               ripple_interval = 23;
               ripple_timer = 99;
           },
@@ -109,6 +109,6 @@ window.onload = function(){
       }
     );
 
-    mouse['down-x'] = x;
-    mouse['down-y'] = y;
+    input_mouse['down-x'] = x;
+    input_mouse['down-y'] = y;
 };
