@@ -5,8 +5,8 @@ function draw_logic(){
     if(loop_counter >= 0){
         for(loop_counter = 0; loop_counter < ripples.length - 1; loop_counter++){
             // Draw ripple.
-            buffer.fillStyle = ripples[loop_counter]['color'];
-            buffer.fillRect(
+            canvas_buffer.fillStyle = ripples[loop_counter]['color'];
+            canvas_buffer.fillRect(
               ripples[loop_counter]['x'] - ripples[loop_counter]['width'],
               ripples[loop_counter]['y'] - ripples[loop_counter]['width'],
               ripples[loop_counter]['width'] * 2,
@@ -16,13 +16,13 @@ function draw_logic(){
     }
 
     // Draw ripples and ripple_interval.
-    buffer.fillStyle = '#fff';
-    buffer.fillText(
+    canvas_buffer.fillStyle = '#fff';
+    canvas_buffer.fillText(
       ripples.length,
       0,
       25
     );
-    buffer.fillText(
+    canvas_buffer.fillText(
       ripple_interval,
       0,
       50
@@ -46,7 +46,7 @@ function logic(){
     var loop_counter = ripples.length - 1;
     if(loop_counter >= 0){
         do{
-            if(ripples[loop_counter]['width'] > x){
+            if(ripples[loop_counter]['width'] > canvas_x){
                 ripples.splice(
                   loop_counter,
                   1
@@ -74,15 +74,15 @@ var ripple_interval = 23;
 var ripple_timer = 99;
 
 window.onload = function(){
-    init_canvas();
+    canvas_init();
     input_init(
       {
         27: {
           'todo': function(){
               ripples.length = 0;
 
-              input_mouse['down-x'] = x;
-              input_mouse['down-y'] = y;
+              input_mouse['down-x'] = canvas_x;
+              input_mouse['down-y'] = canvas_y;
               ripple_interval = 23;
               ripple_timer = 99;
           },
@@ -109,6 +109,6 @@ window.onload = function(){
       }
     );
 
-    input_mouse['down-x'] = x;
-    input_mouse['down-y'] = y;
+    input_mouse['down-x'] = canvas_x;
+    input_mouse['down-y'] = canvas_y;
 };
