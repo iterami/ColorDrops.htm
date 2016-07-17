@@ -61,14 +61,6 @@ function logic(){
     }
 }
 
-function random_hex(){
-    var choices = '0123456789abcdef';
-    return '#'
-      + choices.charAt(Math.floor(Math.random() * 16))
-      + choices.charAt(Math.floor(Math.random() * 16))
-      + choices.charAt(Math.floor(Math.random() * 16));
-}
-
 var ripples = [];
 var ripple_interval = 23;
 var ripple_timer = 99;
