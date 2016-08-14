@@ -1,21 +1,18 @@
 'use strict';
 
 function draw_logic(){
-    var loop_counter = ripples.length - 1;
-    if(loop_counter >= 0){
-        for(loop_counter = 0; loop_counter < ripples.length - 1; loop_counter++){
-            // Draw ripple.
-            canvas_buffer.fillStyle = ripples[loop_counter]['color'];
-            canvas_buffer.fillRect(
-              ripples[loop_counter]['x'] - ripples[loop_counter]['width'],
-              ripples[loop_counter]['y'] - ripples[loop_counter]['width'],
-              ripples[loop_counter]['width'] * 2,
-              ripples[loop_counter]['width'] * 2
-            );
-        }
+    // Draw ripples.
+    for(var loop_counter = 0; loop_counter < ripples.length; loop_counter++){
+        canvas_buffer.fillStyle = ripples[loop_counter]['color'];
+        canvas_buffer.fillRect(
+          ripples[loop_counter]['x'] - ripples[loop_counter]['width'],
+          ripples[loop_counter]['y'] - ripples[loop_counter]['width'],
+          ripples[loop_counter]['width'] * 2,
+          ripples[loop_counter]['width'] * 2
+        );
     }
 
-    // Draw ripples and ripple_interval.
+    // Draw ripples.length and ripple_interval.
     canvas_buffer.fillStyle = '#fff';
     canvas_buffer.fillText(
       ripples.length,
