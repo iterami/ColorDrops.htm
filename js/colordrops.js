@@ -64,8 +64,8 @@ var ripple_timer = 99;
 
 window.onload = function(){
     canvas_init();
-    input_init(
-      {
+    input_init({
+      'keybinds': {
         27: {
           'todo': function(){
               ripples.length = 0;
@@ -89,14 +89,14 @@ window.onload = function(){
           },
         },
       },
-      {
+      'mousebinds': {
         'mousedown': {
           'todo': function(){
               ripple_timer = 99;
           },
         },
-      }
-    );
+      },
+    });
 
     input_mouse['down-x'] = canvas_x;
     input_mouse['down-y'] = canvas_y;
