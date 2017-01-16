@@ -76,16 +76,16 @@ window.onload = function(){
               ripple_timer = 99;
           },
         },
-        187: {
-          'todo': function(){
-              ripple_interval++;
-          },
-        },
-        189: {
+        83: {
           'todo': function(){
               ripple_interval = ripple_interval > 0
                 ? ripple_interval - 1
                 : 0;
+          },
+        },
+        87: {
+          'todo': function(){
+              ripple_interval++;
           },
         },
       },
