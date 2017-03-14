@@ -33,7 +33,7 @@ function logic(){
 
         // Create new ripple.
         ripples.push({
-          'color': random_hex(),
+          'color': '#' + random_hex(),
           'width': 0,
           'x': input_mouse['down-x'],
           'y': input_mouse['down-y'],
