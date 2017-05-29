@@ -58,13 +58,9 @@ function logic(){
     }
 }
 
-var ripples = [];
-var ripple_interval = 23;
-var ripple_timer = 99;
-
-window.onload = function(){
+function repo_init(){
     canvas_init();
-    core_input_init({
+    core_input_binds_add({
       'keybinds': {
         27: {
           'todo': function(){
@@ -100,4 +96,8 @@ window.onload = function(){
 
     core_input_mouse['down-x'] = canvas_x;
     core_input_mouse['down-y'] = canvas_y;
-};
+}
+
+var ripples = [];
+var ripple_interval = 23;
+var ripple_timer = 99;
