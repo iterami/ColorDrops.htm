@@ -35,8 +35,8 @@ function logic(){
         ripples.push({
           'color': '#' + core_random_hex(),
           'width': 0,
-          'x': core_input_mouse['down-x'],
-          'y': core_input_mouse['down-y'],
+          'x': core_mouse['down-x'],
+          'y': core_mouse['down-y'],
         });
     }
 
@@ -59,15 +59,14 @@ function logic(){
 }
 
 function repo_init(){
-    canvas_init();
-    core_input_binds_add({
+    core_events_bind({
       'keybinds': {
         27: {
           'todo': function(){
               ripples.length = 0;
 
-              core_input_mouse['down-x'] = canvas_x;
-              core_input_mouse['down-y'] = canvas_y;
+              core_mouse['down-x'] = canvas_x;
+              core_mouse['down-y'] = canvas_y;
               ripple_interval = 23;
               ripple_timer = 99;
           },
@@ -93,9 +92,10 @@ function repo_init(){
         },
       },
     });
+    canvas_init();
 
-    core_input_mouse['down-x'] = canvas_x;
-    core_input_mouse['down-y'] = canvas_y;
+    core_mouse['down-x'] = canvas_x;
+    core_mouse['down-y'] = canvas_y;
 }
 
 var ripples = [];
