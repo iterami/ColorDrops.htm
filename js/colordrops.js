@@ -58,19 +58,18 @@ function logic(){
     }
 }
 
+function repo_escape(){
+    ripples.length = 0;
+
+    core_mouse['down-x'] = canvas_x;
+    core_mouse['down-y'] = canvas_y;
+    ripple_interval = 23;
+    ripple_timer = 99;
+}
+
 function repo_init(){
     core_events_bind({
       'keybinds': {
-        27: {
-          'todo': function(){
-              ripples.length = 0;
-
-              core_mouse['down-x'] = canvas_x;
-              core_mouse['down-y'] = canvas_y;
-              ripple_interval = 23;
-              ripple_timer = 99;
-          },
-        },
         83: {
           'todo': function(){
               ripple_interval = ripple_interval > 0
