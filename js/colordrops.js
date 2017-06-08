@@ -68,6 +68,9 @@ function repo_escape(){
 }
 
 function repo_init(){
+    core_repo_init({
+      'title': 'ColorDrops.htm',
+    });
     core_events_bind({
       'keybinds': {
         83: {
