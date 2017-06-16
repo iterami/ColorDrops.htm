@@ -19,16 +19,11 @@ function draw_logic(){
       0,
       25
     );
-    canvas_buffer.fillText(
-      ripple_interval,
-      0,
-      50
-    );
 }
 
 function logic(){
     ripple_timer += 1;
-    if(ripple_timer >= ripple_interval){
+    if(ripple_timer >= core_storage_data['frame-ms']){
         ripple_timer = 0;
 
         // Create new ripple.
@@ -63,26 +58,11 @@ function repo_escape(){
 
     core_mouse['down-x'] = canvas_x;
     core_mouse['down-y'] = canvas_y;
-    ripple_interval = 23;
     ripple_timer = 99;
 }
 
 function repo_init(){
     core_repo_init({
-      'keybinds': {
-        83: {
-          'todo': function(){
-              ripple_interval = ripple_interval > 0
-                ? ripple_interval - 1
-                : 0;
-          },
-        },
-        87: {
-          'todo': function(){
-              ripple_interval++;
-          },
-        },
-      },
       'mousebinds': {
         'mousedown': {
           'todo': function(){
@@ -99,5 +79,4 @@ function repo_init(){
 }
 
 var ripples = [];
-var ripple_interval = 23;
 var ripple_timer = 99;
