@@ -53,16 +53,9 @@ function logic(){
     }
 }
 
-function repo_escape(){
-    ripples.length = 0;
-
-    core_mouse['down-x'] = canvas_x;
-    core_mouse['down-y'] = canvas_y;
-    ripple_timer = 99;
-}
-
 function repo_init(){
     core_repo_init({
+      'info': '<input onclick=canvas_setmode({newgame:true}) type=button value=Restart>',
       'mousebinds': {
         'mousedown': {
           'todo': function(){
@@ -73,9 +66,6 @@ function repo_init(){
       'title': 'ColorDrops.htm',
     });
     canvas_init();
-
-    core_mouse['down-x'] = canvas_x;
-    core_mouse['down-y'] = canvas_y;
 }
 
 var ripples = [];
