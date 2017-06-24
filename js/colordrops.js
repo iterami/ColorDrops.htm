@@ -11,14 +11,6 @@ function draw_logic(){
           ripples[loop_counter]['width'] * 2
         );
     }
-
-    // Draw ripples.length and ripple_interval.
-    canvas_buffer.fillStyle = '#fff';
-    canvas_buffer.fillText(
-      ripples.length,
-      0,
-      25
-    );
 }
 
 function logic(){
@@ -51,6 +43,12 @@ function logic(){
             ripples[loop_counter]['width'] += 1;
         }
     }
+
+    core_ui_update({
+      'ids': {
+        'ripples': ripples.length,
+      },
+    });
 }
 
 function repo_init(){
@@ -64,6 +62,7 @@ function repo_init(){
         },
       },
       'title': 'ColorDrops.htm',
+      'ui': '<input id=ui-ripples>Ripples',
     });
     canvas_init();
 }
