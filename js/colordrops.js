@@ -2,13 +2,13 @@
 
 function draw_logic(){
     // Draw ripples.
-    for(var loop_counter = 0; loop_counter < ripples.length; loop_counter++){
-        canvas_buffer.fillStyle = ripples[loop_counter]['color'];
+    for(var entity in core_entities){
+        canvas_buffer.fillStyle = core_entities[entity]['color'];
         canvas_buffer.fillRect(
-          ripples[loop_counter]['x'] - ripples[loop_counter]['width'],
-          ripples[loop_counter]['y'] - ripples[loop_counter]['width'],
-          ripples[loop_counter]['width'] * 2,
-          ripples[loop_counter]['width'] * 2
+          core_entities[entity]['x'] - core_entities[entity]['width'],
+          core_entities[entity]['y'] - core_entities[entity]['width'],
+          core_entities[entity]['width'] * 2,
+          core_entities[entity]['width'] * 2
         );
     }
 }
@@ -19,34 +19,32 @@ function logic(){
         ripple_timer = 0;
 
         // Create new ripple.
-        ripples.push({
-          'color': '#' + core_random_hex(),
-          'width': 0,
-          'x': core_mouse['down-x'],
-          'y': core_mouse['down-y'],
+        core_entity_create({
+          'properties': {
+            'color': '#' + core_random_hex(),
+            'width': 0,
+            'x': core_mouse['down-x'],
+            'y': core_mouse['down-y'],
+          },
         });
     }
 
-    var loop_counter = ripples.length - 1;
-    if(loop_counter >= 0){
-        do{
-            if(ripples[loop_counter]['width'] > canvas_x){
-                ripples.splice(
-                  loop_counter,
-                  1
-                );
-            }
-        }while(loop_counter--);
+    for(var entity in core_entities){
+        // Increase size of ripple.
+        core_entities[entity]['width'] += 1;
 
-        for(loop_counter = 0; loop_counter < ripples.length - 1; loop_counter++){
-            // Increase size of ripple.
-            ripples[loop_counter]['width'] += 1;
+        if(core_entities[entity]['width'] > canvas_x){
+            core_entity_remove({
+              'entities': [
+                entity,
+              ],
+            });
         }
     }
 
     core_ui_update({
       'ids': {
-        'ripples': ripples.length,
+        'ripples': core_entity_count,
       },
     });
 }
@@ -67,5 +65,4 @@ function repo_init(){
     canvas_init();
 }
 
-var ripples = [];
 var ripple_timer = 99;
