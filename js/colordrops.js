@@ -3,12 +3,13 @@
 function draw_logic(){
     // Draw ripples.
     for(var entity in core_entities){
+        var width = core_entities[entity]['width'] * 2;
         canvas_buffer.fillStyle = core_entities[entity]['color'];
         canvas_buffer.fillRect(
           core_entities[entity]['x'] - core_entities[entity]['width'],
           core_entities[entity]['y'] - core_entities[entity]['width'],
-          core_entities[entity]['width'] * 2,
-          core_entities[entity]['width'] * 2
+          width,
+          width
         );
     }
 }
