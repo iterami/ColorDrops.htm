@@ -61,7 +61,7 @@ function repo_init(){
         },
       },
       'title': 'ColorDrops.htm',
-      'ui': '<input id=ui-ripples>Ripples',
+      'ui': '<span id=ui-ripples></span> Ripples',
     });
     canvas_init();
 }
