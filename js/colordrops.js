@@ -45,7 +45,7 @@ function logic(){
 
     core_ui_update({
       'ids': {
-        'ripples': core_entity_count,
+        'ripples': core_entity_info['canvas']['count'],
       },
     });
 }
