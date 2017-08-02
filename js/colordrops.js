@@ -35,18 +35,23 @@ function logic(){
         });
     }
 
-    for(var entity in core_entities){
-        // Increase size of ripple.
-        core_entities[entity]['width'] += 1;
+    core_group_modify({
+      'groups': [
+        'canvas',
+      ],
+      'todo': function(entity){
+          // Increase size of ripple.
+          core_entities[entity]['width'] += 1;
 
-        if(core_entities[entity]['width'] > canvas_x){
-            core_entity_remove({
-              'entities': [
-                entity,
-              ],
-            });
-        }
-    }
+          if(core_entities[entity]['width'] > canvas_x){
+              core_entity_remove({
+                'entities': [
+                  entity,
+                ],
+              });
+          }
+      },
+    });
 
     core_ui_update({
       'ids': {
