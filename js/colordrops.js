@@ -21,7 +21,7 @@ function draw_logic(){
 
 function logic(){
     ripple_timer += 1;
-    if(ripple_timer >= core_storage_data['frame-ms']){
+    if(ripple_timer >= core_storage_data['ripple-timer-max']){
         ripple_timer = 0;
 
         // Create new ripple.
@@ -70,6 +70,10 @@ function repo_init(){
           },
         },
       },
+      'storage': {
+        'ripple-timer-max': 25,
+      },
+      'storage-menu': '<table><tr><td><input id=ripple-timer-max><td>Ripple Timer Max</table>',
       'title': 'ColorDrops.htm',
       'ui': '<span id=ui-ripples></span> Ripples',
     });
