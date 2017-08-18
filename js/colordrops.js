@@ -68,7 +68,17 @@ function logic(){
 
 function repo_init(){
     core_repo_init({
-      'info': '<input onclick=canvas_setmode({newgame:true}) type=button value=Restart>',
+      'info': '<input id=restart type=button value=Restart>',
+      'info-events': {
+        'restart': {
+          'todo': function(){
+              canvas_setmode({
+                'newgame': true,
+              });
+          },
+          'type': 'onclick',
+        },
+      },
       'mousebinds': {
         'mousedown': {
           'todo': function(){
