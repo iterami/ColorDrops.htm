@@ -48,8 +48,8 @@ function logic(){
           core_entities[entity]['height'] += core_storage_data['height-speed'];
           core_entities[entity]['width'] += core_storage_data['width-speed'];
 
-          if(core_entities[entity]['height'] > canvas_y
-            || core_entities[entity]['width'] > canvas_x){
+          if(core_entities[entity]['height'] > canvas_properties['height-half']
+            || core_entities[entity]['width'] > canvas_properties['width-half']){
               core_entity_remove({
                 'entities': [
                   entity,
