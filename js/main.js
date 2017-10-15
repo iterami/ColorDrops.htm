@@ -96,5 +96,3 @@ function repo_init(){
     });
     canvas_init();
 }
-
-var ripple_timer = 99;
