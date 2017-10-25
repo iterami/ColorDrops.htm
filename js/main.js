@@ -68,19 +68,19 @@ function logic(){
 
 function repo_init(){
     core_repo_init({
-      'globals': {
-        'ripple_timer': 0,
-      },
-      'info': '<input id=restart type=button value=Restart>',
-      'info-events': {
+      'events': {
         'restart': {
-          'todo': function(){
+          'onclick': function(){
               canvas_setmode({
                 'newgame': true,
               });
           },
         },
       },
+      'globals': {
+        'ripple_timer': 0,
+      },
+      'info': '<input id=restart type=button value=Restart>',
       'mousebinds': {
         'mousedown': {
           'todo': function(){
