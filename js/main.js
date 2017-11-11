@@ -58,12 +58,6 @@ function logic(){
           }
       },
     });
-
-    core_ui_update({
-      'ids': {
-        'ripples': core_entity_info['canvas']['count'],
-      },
-    });
 }
 
 function repo_init(){
@@ -95,7 +89,6 @@ function repo_init(){
       },
       'storage-menu': '<table><tr><td><input id=height-speed><td>Height Speed<tr><td><input id=ripple-timer-max><td>Ripple Timer Max<tr><td><input id=width-speed><td>Width Speed</table>',
       'title': 'ColorDrops.htm',
-      'ui': '<span id=ui-ripples></span> Ripples',
     });
     canvas_init();
 }
