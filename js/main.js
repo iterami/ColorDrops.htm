@@ -29,7 +29,6 @@ function logic(){
 
         // Create new ripple.
         core_entity_create({
-          'id': id_count,
           'properties': {
             'color': '#' + core_random_hex(),
             'height': 0,
@@ -38,7 +37,6 @@ function logic(){
             'y': core_mouse['down-y'],
           },
         });
-        id_count++;
     }
 
     core_group_modify({
@@ -74,7 +72,6 @@ function repo_init(){
         },
       },
       'globals': {
-        'id_count': 0,
         'ripple_timer': 0,
       },
       'info': '<input id=restart type=button value=Restart>',
