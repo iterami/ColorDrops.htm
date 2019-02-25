@@ -81,6 +81,16 @@ function repo_init(){
               ripple_timer = 99;
           },
         },
+        'mousemove': {
+          'todo': function(){
+              if(core_mouse['down-0']){
+                  core_mouse['down-x'] = core_mouse['x'];
+                  core_mouse['down-y'] = core_mouse['y'];
+
+                  ripple_timer = 99;
+              }
+          },
+        },
       },
       'storage': {
         'height-speed': 1,
