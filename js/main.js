@@ -2,21 +2,21 @@
 
 function draw_logic(){
     // Draw ripples.
-    core_group_modify({
+    entity_group_modify({
       'groups': [
         'canvas',
       ],
       'todo': function(entity){
           canvas_setproperties({
             'properties': {
-              'fillStyle': core_entities[entity]['color'],
+              'fillStyle': entity_entities[entity]['color'],
             },
           });
           canvas_buffer.fillRect(
-            core_entities[entity]['x'] - core_entities[entity]['width'],
-            core_entities[entity]['y'] - core_entities[entity]['height'],
-            core_entities[entity]['width'] * 2,
-            core_entities[entity]['height'] * 2
+            entity_entities[entity]['x'] - entity_entities[entity]['width'],
+            entity_entities[entity]['y'] - entity_entities[entity]['height'],
+            entity_entities[entity]['width'] * 2,
+            entity_entities[entity]['height'] * 2
           );
       },
     });
@@ -28,7 +28,7 @@ function logic(){
         ripple_timer = 0;
 
         // Create new ripple.
-        core_entity_create({
+        entity_create({
           'properties': {
             'color': '#' + core_random_hex(),
             'height': 0,
@@ -39,18 +39,18 @@ function logic(){
         });
     }
 
-    core_group_modify({
+    entity_group_modify({
       'groups': [
         'canvas',
       ],
       'todo': function(entity){
           // Increase size of ripple.
-          core_entities[entity]['height'] += core_storage_data['height-speed'];
-          core_entities[entity]['width'] += core_storage_data['width-speed'];
+          entity_entities[entity]['height'] += core_storage_data['height-speed'];
+          entity_entities[entity]['width'] += core_storage_data['width-speed'];
 
-          if(core_entities[entity]['height'] > canvas_properties['height-half']
-            || core_entities[entity]['width'] > canvas_properties['width-half']){
-              core_entity_remove({
+          if(entity_entities[entity]['height'] > canvas_properties['height-half']
+            || entity_entities[entity]['width'] > canvas_properties['width-half']){
+              entity_remove({
                 'entities': [
                   entity,
                 ],
