@@ -1,6 +1,6 @@
 'use strict';
 
-function draw_logic(){
+function repo_drawlogic(){
     // Draw ripples.
     entity_group_modify({
       'groups': [
@@ -22,7 +22,7 @@ function draw_logic(){
     });
 }
 
-function logic(){
+function repo_logic(){
     ripple_timer += 1;
     if(ripple_timer >= core_storage_data['ripple-timer-max']){
         ripple_timer = 0;
