@@ -1,7 +1,6 @@
 'use strict';
 
 function repo_drawlogic(){
-    // Draw ripples.
     entity_group_modify({
       'groups': [
         'canvas',
@@ -27,7 +26,6 @@ function repo_logic(){
     if(ripple_timer >= core_storage_data['ripple-timer-max']){
         ripple_timer = 0;
 
-        // Create new ripple.
         entity_create({
           'properties': {
             'color': '#' + core_random_hex(),
@@ -44,7 +42,6 @@ function repo_logic(){
         'canvas',
       ],
       'todo': function(entity){
-          // Increase size of ripple.
           entity_entities[entity]['height'] += core_storage_data['height-speed'];
           entity_entities[entity]['width'] += core_storage_data['width-speed'];
 
@@ -94,9 +91,9 @@ function repo_init(){
         'ripple-timer-max': 25,
         'width-speed': 1,
       },
-      'storage-menu': '<table><tr><td><input id=height-speed><td>Height Speed'
-        + '<tr><td><input id=ripple-timer-max><td>Ripple Timer Max'
-        + '<tr><td><input id=width-speed><td>Width Speed</table>',
+      'storage-menu': '<table><tr><td><input id=height-speed type=number><td>Height Speed'
+        + '<tr><td><input id=ripple-timer-max min=1 type=number><td>Ripple Timer Max'
+        + '<tr><td><input id=width-speed type=number><td>Width Speed</table>',
       'title': 'ColorDrops.htm',
     });
     canvas_init();
