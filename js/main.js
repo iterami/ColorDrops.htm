@@ -91,9 +91,9 @@ function repo_init(){
         'ripple-timer-max': 25,
         'width-speed': 1,
       },
-      'storage-menu': '<table><tr><td><input id=height-speed type=number><td>Height Speed'
-        + '<tr><td><input id=ripple-timer-max min=1 type=number><td>Ripple Timer Max'
-        + '<tr><td><input id=width-speed type=number><td>Width Speed</table>',
+      'storage-menu': '<table><tr><td><input id=height-speed step=any type=number><td>Height Speed'
+        + '<tr><td><input id=ripple-timer-max min=1 step=any type=number><td>Ripple Timer Max'
+        + '<tr><td><input id=width-speed step=any type=number><td>Width Speed</table>',
       'title': 'ColorDrops.htm',
     });
     canvas_init();
