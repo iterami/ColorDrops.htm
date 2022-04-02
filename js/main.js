@@ -96,5 +96,7 @@ function repo_init(){
         + '<tr><td><input class=mini id=width-speed step=any type=number><td>Width Speed</table>',
       'title': 'ColorDrops.htm',
     });
-    canvas_init();
+    canvas_init({
+      'cursor': 'pointer',
+    });
 }
