@@ -72,7 +72,7 @@ function repo_init(){
       'globals': {
         'ripple_timer': 0,
       },
-      'info': '<input id=restart type=button value=Restart>',
+      'info': '<button id=restart type=button>Restart</button>',
       'mousebinds': {
         'mousedown': {
           'todo': function(){
