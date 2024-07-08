@@ -78,8 +78,10 @@ function repo_logic(){
           entity_entities[entity]['height'] += core_storage_data['height-speed'];
           entity_entities[entity]['width'] += core_storage_data['width-speed'];
 
-          if(entity_entities[entity]['height'] > canvas_properties['height-half']
-            || entity_entities[entity]['width'] > canvas_properties['width-half']){
+          if(entity_entities[entity]['height'] > Math.max(
+              canvas_properties['height'],
+              canvas_properties['width']
+            )){
               entity_remove({
                 'entities': [
                   entity,
