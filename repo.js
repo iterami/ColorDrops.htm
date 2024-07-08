@@ -12,26 +12,17 @@ function repo_drawlogic(){
             'canvas',
           ],
           'todo': function(entity){
-              canvas_draw_path({
-                'properties': {
-                  'fillStyle': entity_entities[entity]['color'],
-                },
-                'style': 'fill',
-                'vertices': [
-                  [
-                    'ellipse',
-                    entity_entities[entity]['x'],
-                    entity_entities[entity]['y'],
-                    entity_entities[entity]['width'],
-                    entity_entities[entity]['height'],
-                    0,
-                    0,
-                    Math.PI * 2,
-                  ],
-                ],
+              canvas_setproperties({
+                'fillStyle': entity_entities[entity]['color'],
               });
-          },
-        });
+              canvas.fillRect(
+                entity_entities[entity]['x'] - entity_entities[entity]['width'],
+                entity_entities[entity]['y'] - entity_entities[entity]['height'],
+                entity_entities[entity]['width'] * 2,
+                entity_entities[entity]['height'] * 2
+              );
+              },
+            });
 
         return;
     }
@@ -41,15 +32,24 @@ function repo_drawlogic(){
         'canvas',
       ],
       'todo': function(entity){
-          canvas_setproperties({
-            'fillStyle': entity_entities[entity]['color'],
+          canvas_draw_path({
+            'properties': {
+              'fillStyle': entity_entities[entity]['color'],
+            },
+            'style': 'fill',
+            'vertices': [
+              [
+                'ellipse',
+                entity_entities[entity]['x'],
+                entity_entities[entity]['y'],
+                entity_entities[entity]['width'],
+                entity_entities[entity]['height'],
+                0,
+                0,
+                Math.PI * 2,
+              ],
+            ],
           });
-          canvas.fillRect(
-            entity_entities[entity]['x'] - entity_entities[entity]['width'],
-            entity_entities[entity]['y'] - entity_entities[entity]['height'],
-            entity_entities[entity]['width'] * 2,
-            entity_entities[entity]['height'] * 2
-          );
       },
     });
 }
@@ -129,7 +129,7 @@ function repo_init(){
       },
       'storage-menu': '<table><tr><td><input class=mini id=height-speed step=any type=number><td>Height Speed'
         + '<tr><td><input class=mini id=ripple-timer-max min=1 step=any type=number><td>Ripple Timer Max'
-        + '<tr><td><select id=type><option value=1>Ellipse<option value=0>Rectangle</select><td>Type'
+        + '<tr><td><select id=type><option value=0>Ellipse<option value=1>Rectangle</select><td>Type'
         + '<tr><td><input class=mini id=width-speed step=any type=number><td>Width Speed</table>',
       'title': 'ColorDrops.htm',
     });
