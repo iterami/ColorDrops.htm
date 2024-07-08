@@ -6,6 +6,36 @@ function load_data(id){
 }
 
 function repo_drawlogic(){
+    if(core_storage_data['type'] === 1){
+        entity_group_modify({
+          'groups': [
+            'canvas',
+          ],
+          'todo': function(entity){
+              canvas_draw_path({
+                'properties': {
+                  'fillStyle': entity_entities[entity]['color'],
+                },
+                'style': 'fill',
+                'vertices': [
+                  [
+                    'ellipse',
+                    entity_entities[entity]['x'],
+                    entity_entities[entity]['y'],
+                    entity_entities[entity]['width'],
+                    entity_entities[entity]['height'],
+                    0,
+                    0,
+                    Math.PI * 2,
+                  ],
+                ],
+              });
+          },
+        });
+
+        return;
+    }
+
     entity_group_modify({
       'groups': [
         'canvas',
@@ -92,10 +122,12 @@ function repo_init(){
       'storage': {
         'height-speed': 1,
         'ripple-timer-max': 25,
+        'type': 0,
         'width-speed': 1,
       },
       'storage-menu': '<table><tr><td><input class=mini id=height-speed step=any type=number><td>Height Speed'
         + '<tr><td><input class=mini id=ripple-timer-max min=1 step=any type=number><td>Ripple Timer Max'
+        + '<tr><td><select id=type><option value=1>Ellipse<option value=0>Rectangle</select><td>Type'
         + '<tr><td><input class=mini id=width-speed step=any type=number><td>Width Speed</table>',
       'title': 'ColorDrops.htm',
     });
