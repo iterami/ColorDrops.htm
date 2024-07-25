@@ -1,5 +1,17 @@
 'use strict';
 
+function create_ripple(){
+    entity_create({
+      'properties': {
+        'color': '#' + core_random_hex(),
+        'height': 0,
+        'width': 0,
+        'x': core_mouse['down-x'],
+        'y': core_mouse['down-y'],
+      },
+    });
+}
+
 function load_data(id){
     core_mouse['down-x'] = canvas_properties['width-half'];
     core_mouse['down-y'] = canvas_properties['height-half'];
@@ -55,19 +67,13 @@ function repo_drawlogic(){
 }
 
 function repo_logic(){
-    ripple_timer += 1;
-    if(ripple_timer >= core_storage_data['ripple-timer-max']){
-        ripple_timer = 0;
+    if(core_storage_data['ripple-timer-max'] > 0){
+        ripple_timer += 1;
+        if(ripple_timer >= core_storage_data['ripple-timer-max']){
+            ripple_timer = 0;
 
-        entity_create({
-          'properties': {
-            'color': '#' + core_random_hex(),
-            'height': 0,
-            'width': 0,
-            'x': core_mouse['down-x'],
-            'y': core_mouse['down-y'],
-          },
-        });
+            create_ripple()
+        }
     }
 
     entity_group_modify({
@@ -105,9 +111,7 @@ function repo_init(){
       'info': '<button id=restart type=button>Restart</button>',
       'mousebinds': {
         'mousedown': {
-          'todo': function(){
-              ripple_timer = 99;
-          },
+          'todo': create_ripple,
         },
         'mousemove': {
           'todo': function(){
@@ -115,7 +119,7 @@ function repo_init(){
                   core_mouse['down-x'] = core_mouse['x'];
                   core_mouse['down-y'] = core_mouse['y'];
 
-                  ripple_timer = 99;
+                  create_ripple()
               }
           },
         },
@@ -128,7 +132,7 @@ function repo_init(){
         'width-speed': 1,
       },
       'storage-menu': '<table><tr><td><input class=mini id=height-speed step=any type=number><td>Height Speed'
-        + '<tr><td><input class=mini id=ripple-timer-max min=1 step=any type=number><td>Ripple Timer Max'
+        + '<tr><td><input class=mini id=ripple-timer-max min=0 step=any type=number><td>Ripple Timer Max'
         + '<tr><td><select id=type><option value=0>Ellipse<option value=1>Rectangle</select><td>Type'
         + '<tr><td><input class=mini id=width-speed step=any type=number><td>Width Speed</table>',
       'title': 'ColorDrops.htm',
