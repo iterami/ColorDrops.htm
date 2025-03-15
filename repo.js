@@ -25,13 +25,13 @@ function repo_drawlogic(){
           ],
           'todo': function(entity){
               canvas_setproperties({
-                'fillStyle': entity_entities[entity]['color'],
+                'fillStyle': entity['color'],
               });
               canvas.fillRect(
-                entity_entities[entity]['x'] - entity_entities[entity]['width'],
-                entity_entities[entity]['y'] - entity_entities[entity]['height'],
-                entity_entities[entity]['width'] * 2,
-                entity_entities[entity]['height'] * 2
+                entity['x'] - entity['width'],
+                entity['y'] - entity['height'],
+                entity['width'] * 2,
+                entity['height'] * 2
               );
               },
             });
@@ -46,16 +46,16 @@ function repo_drawlogic(){
       'todo': function(entity){
           canvas_draw_path({
             'properties': {
-              'fillStyle': entity_entities[entity]['color'],
+              'fillStyle': entity['color'],
             },
             'style': 'fill',
             'vertices': [
               [
                 'ellipse',
-                entity_entities[entity]['x'],
-                entity_entities[entity]['y'],
-                entity_entities[entity]['width'],
-                entity_entities[entity]['height'],
+                entity['x'],
+                entity['y'],
+                entity['width'],
+                entity['height'],
                 0,
                 0,
                 Math.PI * 2,
@@ -81,16 +81,16 @@ function repo_logic(){
         'canvas',
       ],
       'todo': function(entity){
-          entity_entities[entity]['height'] += core_storage_data['height-speed'];
-          entity_entities[entity]['width'] += core_storage_data['width-speed'];
+          entity['height'] += core_storage_data['height-speed'];
+          entity['width'] += core_storage_data['width-speed'];
 
-          if(entity_entities[entity]['height'] > Math.max(
+          if(entity['height'] > Math.max(
               canvas_properties['height'],
               canvas_properties['width']
             )){
               entity_remove({
                 'entities': [
-                  entity,
+                  entity['id'],
                 ],
               });
           }
