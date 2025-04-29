@@ -102,7 +102,7 @@ function repo_init(){
     core_repo_init({
       'events': {
         'restart': {
-          'onclick': core_repo_reset,
+          'onclick': canvas_setmode,
         },
       },
       'globals': {
@@ -124,7 +124,6 @@ function repo_init(){
           },
         },
       },
-      'reset': canvas_setmode,
       'storage': {
         'height-speed': 1,
         'ripple-timer-max': 25,
