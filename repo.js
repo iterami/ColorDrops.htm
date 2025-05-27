@@ -66,38 +66,6 @@ function repo_drawlogic(){
     });
 }
 
-function repo_logic(){
-    if(core_storage_data['ripple-timer-max'] > 0){
-        ripple_timer += 1;
-        if(ripple_timer >= core_storage_data['ripple-timer-max']){
-            ripple_timer = 0;
-
-            create_ripple()
-        }
-    }
-
-    entity_group_modify({
-      'groups': [
-        'canvas',
-      ],
-      'todo': function(entity){
-          entity['height'] += core_storage_data['height-speed'];
-          entity['width'] += core_storage_data['width-speed'];
-
-          if(entity['height'] > Math.max(
-              canvas_properties['height'],
-              canvas_properties['width']
-            )){
-              entity_remove({
-                'entities': [
-                  entity['id'],
-                ],
-              });
-          }
-      },
-    });
-}
-
 function repo_init(){
     core_repo_init({
       'events': {
@@ -138,5 +106,37 @@ function repo_init(){
     });
     canvas_init({
       'cursor': 'pointer',
+    });
+}
+
+function repo_logic(){
+    if(core_storage_data['ripple-timer-max'] > 0){
+        ripple_timer += 1;
+        if(ripple_timer >= core_storage_data['ripple-timer-max']){
+            ripple_timer = 0;
+
+            create_ripple()
+        }
+    }
+
+    entity_group_modify({
+      'groups': [
+        'canvas',
+      ],
+      'todo': function(entity){
+          entity['height'] += core_storage_data['height-speed'];
+          entity['width'] += core_storage_data['width-speed'];
+
+          if(entity['height'] > Math.max(
+              canvas_properties['height'],
+              canvas_properties['width']
+            )){
+              entity_remove({
+                'entities': [
+                  entity['id'],
+                ],
+              });
+          }
+      },
     });
 }
