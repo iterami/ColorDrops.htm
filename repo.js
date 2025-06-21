@@ -6,15 +6,15 @@ function create_ripple(){
         'color': '#' + core_random_hex(),
         'height': 0,
         'width': 0,
-        'x': core_pointer['down-x'],
-        'y': core_pointer['down-y'],
+        'x': core_pointer.down_x,
+        'y': core_pointer.down_y,
       },
     });
 }
 
 function load_data(id){
-    core_pointer['down-x'] = canvas_properties['width_half'];
-    core_pointer['down-y'] = canvas_properties['height_half'];
+    core_pointer.down_x = canvas_properties['width_half'];
+    core_pointer.down_y = canvas_properties['height_half'];
 }
 
 function repo_drawlogic(){
@@ -83,9 +83,9 @@ function repo_init(){
         },
         'pointermove': {
           'todo': function(){
-              if(core_pointer['down-0']){
-                  core_pointer['down-x'] = core_pointer.x;
-                  core_pointer['down-y'] = core_pointer.y;
+              if(core_pointer.down_0){
+                  core_pointer.down_x = core_pointer.x;
+                  core_pointer.down_y = core_pointer.y;
 
                   create_ripple();
               }
