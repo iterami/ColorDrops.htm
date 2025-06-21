@@ -98,7 +98,7 @@ function repo_init(){
         'type': 0,
         'width_speed': 1,
       },
-      'storage-menu': '<table><tr><td><input class=mini id=height_speed step=any type=number><td>Height Speed'
+      'storage_menu': '<table><tr><td><input class=mini id=height_speed step=any type=number><td>Height Speed'
         + '<tr><td><input class=mini id=ripple_timer_max min=0 step=any type=number><td>Ripple Timer Max'
         + '<tr><td><select id=type><option value=0>Ellipse<option value=1>Rectangle</select><td>Type'
         + '<tr><td><input class=mini id=width_speed step=any type=number><td>Width Speed</table>',
