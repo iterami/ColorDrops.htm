@@ -12,11 +12,6 @@ function create_ripple(){
     });
 }
 
-function load_data(id){
-    core_pointer.down_x = canvas_properties.width_half;
-    core_pointer.down_y = canvas_properties.height_half;
-}
-
 function repo_drawlogic(){
     if(core_storage_data.type === 1){
         entity_group_modify({
@@ -107,6 +102,11 @@ function repo_init(){
     canvas_init({
       'cursor': 'pointer',
     });
+}
+
+function repo_load(id){
+    core_pointer.down_x = canvas_properties.width_half;
+    core_pointer.down_y = canvas_properties.height_half;
 }
 
 function repo_logic(){
