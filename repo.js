@@ -12,52 +12,63 @@ function create_ripple(){
     });
 }
 
-function repo_drawlogic(){
-    if(core_storage_data.type === 1){
-        entity_group_modify({
-          'groups': [
-            'canvas',
+function draw_ellipse(entity){
+    canvas_draw_path({
+      'properties': {
+        'fillStyle': entity.color,
+      },
+      'style': 'fill',
+      'vertices': [
+        [
+          'ellipse',
+          entity.x,
+          entity.y,
+          entity.width,
+          entity.height,
+          0,
+          0,
+          Math.PI * 2,
+        ],
+      ],
+    });
+}
+
+function draw_rect(entity){
+    canvas_setproperties({
+      'fillStyle': entity.color,
+    });
+    canvas.fillRect(
+      entity.x - entity.width,
+      entity.y - entity.height,
+      entity.width * 2,
+      entity.height * 2
+    );
+}
+
+function expand_drop(entity){
+    entity.height += core_storage_data.height_speed;
+    entity.width += core_storage_data.width_speed;
+
+    if(entity.height > Math.max(
+        canvas_properties.height,
+        canvas_properties.width
+      )){
+        entity_remove({
+          'entities': [
+            entity.id,
           ],
-          'todo': function(entity){
-              canvas_setproperties({
-                'fillStyle': entity.color,
-              });
-              canvas.fillRect(
-                entity.x - entity.width,
-                entity.y - entity.height,
-                entity.width * 2,
-                entity.height * 2
-              );
-              },
-            });
-
-        return;
+        });
     }
+}
 
+function repo_drawlogic(){
     entity_group_modify({
       'groups': [
         'canvas',
       ],
-      'todo': function(entity){
-          canvas_draw_path({
-            'properties': {
-              'fillStyle': entity.color,
-            },
-            'style': 'fill',
-            'vertices': [
-              [
-                'ellipse',
-                entity.x,
-                entity.y,
-                entity.width,
-                entity.height,
-                0,
-                0,
-                Math.PI * 2,
-              ],
-            ],
-          });
-      },
+      'todo': core_storage_data.type === 1
+        ? draw_rect
+        : draw_ellipse,
     });
 }
 
@@ -123,20 +134,6 @@ function repo_logic(){
       'groups': [
         'canvas',
       ],
-      'todo': function(entity){
-          entity.height += core_storage_data.height_speed;
-          entity.width += core_storage_data.width_speed;
-
-          if(entity.height > Math.max(
-              canvas_properties.height,
-              canvas_properties.width
-            )){
-              entity_remove({
-                'entities': [
-                  entity.id,
-                ],
-              });
-          }
-      },
+      'todo': expand_drop,
     });
 }
