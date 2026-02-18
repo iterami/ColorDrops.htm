@@ -82,7 +82,7 @@ function repo_init(){
       'globals': {
         'ripple_timer': 0,
       },
-      'info': '<button id=restart type=button>Restart</button>',
+      'info': '<button class=medium id=restart type=button>Restart</button>',
       'pointerbinds': {
         'pointerdown': {
           'todo': create_ripple,
