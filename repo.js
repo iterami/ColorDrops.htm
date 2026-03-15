@@ -46,8 +46,8 @@ function draw_rect(entity){
 }
 
 function expand_drop(entity){
-    entity.height += core_storage_data.height_speed;
-    entity.width += core_storage_data.width_speed;
+    entity.height += core_storage_data.speed_y;
+    entity.width += core_storage_data.speed_x;
 
     if(entity.height > Math.max(
         canvas_properties.height,
@@ -99,15 +99,15 @@ function repo_init(){
         },
       },
       'storage': {
-        'height_speed': 1,
         'ripple_timer_max': 25,
+        'speed_x': 1,
+        'speed_y': 1,
         'type': 0,
-        'width_speed': 1,
       },
-      'storage_menu': '<table><tr><td><input class=mini id=height_speed step=any type=number><td>Height Speed'
-        + '<tr><td><input class=mini id=ripple_timer_max min=0 step=any type=number><td>Ripple Timer Max'
-        + '<tr><td><select id=type><option value=0>Ellipse<option value=1>Rectangle</select><td>Type'
-        + '<tr><td><input class=mini id=width_speed step=any type=number><td>Width Speed</table>',
+      'storage_menu': '<table><tr><td><input class=mini id=ripple_timer_max min=0 step=any type=number><td>Ripple Timer Max'
+        + '<tr><td><input class=mini id=speed_x min=.001 step=any type=number><td>Speed X'
+        + '<tr><td><input class=mini id=speed_y min=.001 step=any type=number><td>Speed Y'
+        + '<tr><td><select id=type><option value=0>Ellipse<option value=1>Rectangle</select><td>Type</table>',
       'title': 'ColorDrops.htm',
     });
     canvas_init({
