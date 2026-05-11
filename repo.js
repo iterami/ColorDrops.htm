@@ -27,7 +27,7 @@ function draw_ellipse(entity){
           entity.height,
           0,
           0,
-          Math.PI * 2,
+          pie,
         ],
       ],
     });
@@ -80,6 +80,7 @@ function repo_init(){
         },
       },
       'globals': {
+        'pie': Math.PI * 2,
         'ripple_timer': 0,
       },
       'info': '<button class=medium id=restart type=button>Restart</button>',
