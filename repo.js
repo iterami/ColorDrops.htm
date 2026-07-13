@@ -54,18 +54,14 @@ function expand_drop(entity){
         canvas_properties.width
       )){
         entity_remove({
-          'entities': [
-            entity.id,
-          ],
+          'entities': [entity.id],
         });
     }
 }
 
 function repo_drawlogic(){
     entity_group_modify({
-      'groups': [
-        'canvas',
-      ],
+      'groups': ['canvas'],
       'todo': core_storage_data.type === 1
         ? draw_rect
         : draw_ellipse,
@@ -85,18 +81,14 @@ function repo_init(){
       },
       'info': '<button class=medium id=restart type=button>Restart</button>',
       'pointerbinds': {
-        'pointerdown': {
-          'todo': create_ripple,
-        },
-        'pointermove': {
-          'todo': function(){
-              if(core_pointer.down_0){
-                  core_pointer.down_x = core_pointer.x;
-                  core_pointer.down_y = core_pointer.y;
+        'pointerdown': create_ripple,
+        'pointermove': function(){
+            if(core_pointer.down_0){
+                core_pointer.down_x = core_pointer.x;
+                core_pointer.down_y = core_pointer.y;
 
-                  create_ripple();
-              }
-          },
+                create_ripple();
+            }
         },
       },
       'storage': {
@@ -132,9 +124,7 @@ function repo_logic(){
     }
 
     entity_group_modify({
-      'groups': [
-        'canvas',
-      ],
+      'groups': ['canvas'],
       'todo': expand_drop,
     });
 }
